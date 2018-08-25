@@ -1,0 +1,16 @@
+.cell td {
+    display: table-cell;
+    height: 110px;
+    width: 140px;
+    font-size: 30px;
+}
+
+.container-flex {
+    display: table;
+    text-align: center;
+}
+
+.center-cell{
+    vertical-align: middle;
+    text-align: center;
+}

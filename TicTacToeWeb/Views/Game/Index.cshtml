@@ -1,0 +1,46 @@
+﻿@model GameIndexViewModel
+
+@{
+    ViewData["Title"] = "Games";
+}
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="text-center">
+            <a class="btn btn-primary" style="margin-top: 20px" role="button"
+               asp-area="" asp-controller="Game" asp-action="Create">Create a game</a>
+        </div>
+    </div>
+</div>
+
+<div id="game-list-container">
+    @await Html.PartialAsync("_GamesPartial", Model)
+</div>
+
+<div class="modal fade" id="joinGameWindow" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">The game is protected, enter password</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <p for="gamePassword">Password:</p>
+                    <input type="password" class="form-control" id="gamePassword">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm joinGameButton" role="button">Join</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/games.js"></script>
+    <script src="~/js/gameList-update.js"></script>
+    <script src="~/js/games.js"></script>
+}

@@ -1,0 +1,19 @@
+﻿@model IList<UserInfoViewModel>
+
+@{
+    ViewData["Title"] = "All";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Where(m => m.IsLocked == false).Count() != 0)
+{
+    @await Html.PartialAsync("_UnlockedUsersPartial", Model.Where(m => m.IsLocked == false).ToList());
+}
+
+<br />
+
+@if (Model.Where(m => m.IsLocked).Count()!= 0)
+{
+    @await Html.PartialAsync("_LockedUsersPartial", Model.Where(m => m.IsLocked).ToList())
+}
+

@@ -1,0 +1,19 @@
+﻿@model IList<GameInfoViewModel>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th style="width: 35px">#</th>
+        <th style="width: 135px"> Description</th>
+        <th style="width: 100px"> Creator</th>
+        <th style="width: 100px"> Visibility</th>
+        <th style="width: 135px"> Created On</th>
+        <th style="width: 135px"> Status</th>
+        <th style="width: 60px"> </th>
+    </tr>
+    </thead>
+
+    <tbody >
+        @(Html.DisplayForModel("GameInfoViewModel"))
+    </tbody>
+</table>

@@ -1,0 +1,25 @@
+﻿@model ICollection<UserInfoViewModel>
+
+@{
+    ViewData["Title"] = "All";
+    var userList = Model.OrderBy(u => u.RegistrationDate).ToList();
+    
+}
+
+<div class="row">
+    <h2 style ="margin-top:65px">Users</h2>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th class="col-md-2 col-md-push-2" style="padding-left: 15px;">#</th>
+            <th class="col-md-4">Username</th>
+            <th class="col-md-4">Registered on</th>
+        </tr>
+        </thead>
+        <tbody>
+            @Html.DisplayForModel("UserInfoViewModel")
+        </tbody>
+    </table>
+</div>
+

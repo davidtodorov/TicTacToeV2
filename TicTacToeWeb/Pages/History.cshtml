@@ -1,0 +1,35 @@
+﻿@page
+@using TicTacToe.Common.ViewModels
+@model TicTacToeWeb.Pages.HistoryModel
+@{
+    ViewData["Title"] = "History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="margin-top:65px">History</h2>
+@if (Model.History.Count == 0)
+{
+    <br/>
+    <h2>You don't have history!</h2>
+}
+else
+{
+    <table class="table table-striped" style="margin-top: 25px;">
+        <thead>
+        <tr>
+            <th class="col-md-1">#</th>
+            <th class="col-md-6">History</th>
+            <th class="col-md-5">Date</th>
+            @if (this.User.IsInRole("Administrator"))
+            {
+                <th></th>
+            }
+        </tr>
+        </thead>
+        <tbody>    
+        @Html.DisplayFor(m => m.History, nameof(HistoryViewModel))
+        </tbody>
+    </table>
+}
+
+

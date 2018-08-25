@@ -1,0 +1,32 @@
+﻿@model IList<GameInfoViewModel>
+
+@for (int i = 0; i < Model.Count; i++)
+{
+    <tr class="game">
+        <td style="max-width: 35px">@(i + 1)</td>
+        <td style="max-width: 135px">@Model[i].Name</td>
+        <td style="max-width: 100px">@Model[i].CreatorUsername</td>
+        <td style="max-width: 100px">@(Model[i].Visibility)</td>
+        <td style="max-width: 135px">@Model[i].CreationDate</td>
+        <td style="max-width: 135px">@(Model[i].State.GetAttribute<DisplayAttribute>().Name)</td>
+        <td style="max-width: 60px">
+            @if (Model[i].CreatorUserId == User.Identity.GetUserId() || Model[i].OpponentUserId == User.Identity.GetUserId())
+            {
+                <button class="btn btn-primary btn-sm playButton" role="button" asp-area="" asp-controller="Game" asp-action="Play" asp-route-id="@Model[i].Id">Play</button>
+            }
+            else if (Model[i].CreatorUserId != User.Identity.GetUserId())
+            {
+                if (Model[i].Visibility == VisibilityType.Protected)
+                {
+                    <button class="btn btn-primary btn-sm openJoinGameWindow" role="button" game-id="@Model[i].Id">Join</button>
+                }
+                else
+                {
+                    <button class="btn btn-primary btn-sm joinGameButton" role="button" game-id="@Model[i].Id">Join</button>
+                }
+            }
+        </td>
+    </tr>
+}
+
+

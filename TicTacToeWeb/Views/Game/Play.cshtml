@@ -1,0 +1,55 @@
+﻿@model GameStatusViewModel
+@{
+    ViewData["Title"] = "Play";
+    bool IsPrivate = (Model.Visibility == VisibilityType.Private && Model.CreatorUserId == Model.CurrentUserId);
+}
+
+<h2>Play - @Model.Name</h2>
+<input type="hidden" value="@Model.Id" id="hiddenGameId"/>
+<input type="hidden" value="@Model.CurrentUserId" id="hiddenUserId"/>
+
+<div class="container">
+    <div class="col-md-4 col-md-push-4 col-sm-6 col-sm-push-3 col-xs-6 col-xs-push-3">
+        @if (Model.State != GameState.WaitingForASecondPlayer)
+        {
+            <h3 id="pvsp">@(Model.CreatorUsername)[X] vs @(Model.OpponentUsername)[O]</h3>
+        }
+        else
+        {
+            <h3 id="pvsp"></h3>
+        }
+        <table class="table table-bordered table-hover cell game-grid-table">
+            <thead >
+            <tr>
+                <td row ="0" col="0" style="vertical-align: middle; text-align: center; "> @Model.Board[0] </td>
+                <td row ="0" col="1" style="vertical-align: middle; text-align: center; "> @Model.Board[1]</td>
+                <td row ="0" col="2" style="vertical-align: middle; text-align: center; "> @Model.Board[2]</td>
+            </tr>
+
+            <tr>
+                <td row ="1" col="0" style="vertical-align: middle; text-align: center;"> @Model.Board[3]</td>
+                <td row ="1" col="1" style="vertical-align: middle; text-align: center;"> @Model.Board[4]</td>
+                <td row ="1" col="2" style="vertical-align: middle; text-align: center;"> @Model.Board[5]</td>
+            </tr>
+
+            <tr>
+                <td row="2" col="0" style="vertical-align: middle; text-align: center;"> @Model.Board[6]</td>
+                <td row="2" col="1" style="vertical-align: middle; text-align: center;"> @Model.Board[7]</td>
+                <td row="2" col="2" style="vertical-align: middle; text-align: center;"> @Model.Board[8]</td>
+            </tr>
+
+            </thead>
+        </table>
+        <h3 id="gameStatus" style ="text-align: center">Status: @(Model.State.GetAttribute<DisplayAttribute>().Name)</h3>
+        <br />
+        <div class="form-group col-md-12 gameLink" style="@(IsPrivate? "display:block;" : "display:none;" )">
+            <label asp-for="PrivateJoinLink">Send this link to your friend: </label>
+            <input asp-for="PrivateJoinLink" type="url" class="form-control"/>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/games.js"></script>
+    <script src="~/js/game-update.js"></script>
+}

@@ -1,0 +1,32 @@
+﻿@page
+@model TicTacToeWeb.Pages.ScoresModel
+
+@{
+    ViewData["Title"] = "Scores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Scores.Count == 0)
+{
+    <br/>
+    <h2>There is no scores yet!</h2>
+}
+else
+{
+    <h2 style="margin-top:65px">Scores</h2>
+    <table class="table table-striped" style="margin-top: 25px;">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Username</th>
+            <th>Wins</th>
+            <th>Draws</th>
+            <th>Loses</th>
+            <th>Points</th>
+        </tr>
+        </thead>
+        <tbody>
+        @Html.DisplayFor(m => m.Scores, "ScoreViewModel")
+        </tbody>
+    </table>
+}

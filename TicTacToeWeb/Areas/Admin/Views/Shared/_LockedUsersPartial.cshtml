@@ -1,0 +1,21 @@
+﻿@model IList<UserInfoViewModel>
+
+<div class="row">
+    <h2 style="margin-top:65px">Locked Users</h2>
+
+    <form method="post" asp-area="Admin" asp-controller="Users" asp-action="Unlock">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="col-md-2 col-md-push-2" style="padding-left: 15px;">#</th>
+                    <th class="col-md-4">Username</th>
+                    <th class="col-md-4">Registered on</th>
+                    <th class="col-md-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @Html.DisplayForModel("UserInfoViewModel")
+            </tbody>
+        </table>
+    </form>
+</div>
