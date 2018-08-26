@@ -23,8 +23,8 @@
             function () {
                 window.location.replace("/admin/users/details/" + userId);
             }).fail(function (result) {
-            errorMessage(result.statusText);
-        });
+                errorMessage(result.statusText);
+            });
     });
 
     $('body').on('click', '#openDeleteAllHistoryWindow', function () {
@@ -47,35 +47,32 @@
             function () {
                 window.location.replace("/admin/users/details/" + userId);
             }).fail(function (result) {
-            errorMessage(result.statusText);
-        });
+                errorMessage(result.statusText);
+            });
     });
-});
 
+    // RESET SCORE
+    $('body').on('click', '#openResetScoresWindow', function () {
+        var that = $(this);
+        var userId = that.attr('user-id');
 
+        $('#resetScoreWindow .resetScoresButton').attr('user-id', userId);
+        $('#resetScoreWindow').modal('toggle');
+    });
 
+    $('body').on('click', '.resetScoresButton', function () {
+        var that = $(this);
+        var userId = that.attr('user-id');
+        var token = $('input[name="__RequestVerificationToken"]').val();
 
-// RESET SCORE
-$('body').on('click', '#openResetScoresWindow', function () {
-    var that = $(this);
-    var userId = that.attr('user-id');
-
-    $('#resetScoreWindow .resetScoresButton').attr('user-id', userId);
-    $('#resetScoreWindow').modal('toggle');
-});
-
-$('body').on('click', '.resetScoresButton', function () {
-    var that = $(this);
-    var userId = that.attr('user-id');
-    var token = $('input[name="__RequestVerificationToken"]').val();
-
-    $.post("/admin/users/ResetScores",
-        { Id: userId, __RequestVerificationToken: token },
-        function (result) {
-            window.location.replace("/admin/users/details/" + userId);
-        }).fail(function (result) {
-            errorMessage(result.statusText);
-        });
+        $.post("/admin/users/ResetScores",
+            { Id: userId, __RequestVerificationToken: token },
+            function (result) {
+                window.location.replace("/admin/users/details/" + userId);
+            }).fail(function (result) {
+                errorMessage(result.statusText);
+            });
+    });
 });
 
 function errorMessage(message) {

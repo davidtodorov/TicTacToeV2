@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     setBackground();
     $('body').on('click', '#chooseColorButton',
-        function () {
+        function() {
             var value = $('#chooseColor').val();
             localStorage.setItem("backgroundColor", value);
             setBackground();

@@ -4,6 +4,9 @@ namespace TicTacToeWeb.Controllers
 {
     public class SettingsController : Controller
     {
-        //todo: implement
+        public IActionResult Index()
+        {
+            return View();
+        }
     }
 }
