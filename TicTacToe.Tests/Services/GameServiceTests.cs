@@ -56,7 +56,7 @@ namespace TicTacToe.Tests.Services
         }
 
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethod]
-        public void GetAvailableGames_OpponentHasACreatedGame_ReturnsGame()
+        public void GetAvailableGames_OpponentHasACreatedGameAndStateIsWaiting_ReturnsGame()
         {
             var opponentGame = new Game(){CreationDate = DateTime.Now, Name= "game", Visibility = VisibilityType.Public, State = GameState.WaitingForASecondPlayer, CreatorUserId = user2.Id, HashedPassword = "", };
             context.Games.Add(opponentGame);
@@ -67,7 +67,22 @@ namespace TicTacToe.Tests.Services
             var games = gameService.GetAvailableGames(user.Id);
             
             Assert.AreEqual(1, games.Count);
+            Assert.AreEqual(opponentGame.GameId, games.FirstOrDefault().Id);
             Assert.IsNotNull(games);
+        }
+
+        public void GetAvailableGames_OpponentHasACreatedGameAndStateIsWon_ReturnsGame()
+        {
+            var opponentGame = new Game() { CreationDate = DateTime.Now, Name = "game", Visibility = VisibilityType.Public, State = GameState.CreatorVictory, CreatorUserId = user2.Id, HashedPassword = "", };
+            context.Games.Add(opponentGame);
+            context.SaveChanges();
+            var gameValidator = new Mock<IGameResultValidator>();
+            var gameService = new GameService(context, gameValidator.Object);
+
+            var games = gameService.GetAvailableGames(user.Id);
+
+            Assert.AreEqual(0, games.Count);
+            Assert.IsFalse(games.Any());
         }
     }
 }
