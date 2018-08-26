@@ -12,11 +12,11 @@ namespace TicTacToeWeb.Pages
     public class FeedbackModel : PageModel
     {
         private SendGridEmailService sendGrid;
+
         public FeedbackModel(SendGridEmailService sendGrid)
         {
             this.sendGrid = sendGrid;
         }
-
 
         [BindProperty]
         public string Subject { get; set; }

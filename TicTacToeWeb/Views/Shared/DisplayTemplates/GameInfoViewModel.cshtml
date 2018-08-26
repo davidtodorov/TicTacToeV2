@@ -12,17 +12,17 @@
         <td style="max-width: 60px">
             @if (Model[i].CreatorUserId == User.Identity.GetUserId() || Model[i].OpponentUserId == User.Identity.GetUserId())
             {
-                <button class="btn btn-primary btn-sm playButton" role="button" asp-area="" asp-controller="Game" asp-action="Play" asp-route-id="@Model[i].Id">Play</button>
+                <button class="btn btn-success btn-sm playButton" role="button" asp-area="" asp-controller="Game" asp-action="Play" asp-route-id="@Model[i].Id">Play</button>
             }
             else if (Model[i].CreatorUserId != User.Identity.GetUserId())
             {
                 if (Model[i].Visibility == VisibilityType.Protected)
                 {
-                    <button class="btn btn-primary btn-sm openJoinGameWindow" role="button" game-id="@Model[i].Id">Join</button>
+                    <button class="btn btn-success btn-sm openJoinGameWindow" role="button" game-id="@Model[i].Id">Join</button>
                 }
                 else
                 {
-                    <button class="btn btn-primary btn-sm joinGameButton" role="button" game-id="@Model[i].Id">Join</button>
+                    <button class="btn btn-success btn-sm joinGameButton" role="button" game-id="@Model[i].Id">Join</button>
                 }
             }
         </td>
