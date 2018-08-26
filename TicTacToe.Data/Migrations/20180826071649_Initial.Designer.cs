@@ -10,8 +10,8 @@ using TicTacToe.Data;
 namespace TicTacToe.Data.Migrations
 {
     [DbContext(typeof(TicTacToeDbContext))]
-    [Migration("20180821114239_AddedDatetoHistory")]
-    partial class AddedDatetoHistory
+    [Migration("20180826071649_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

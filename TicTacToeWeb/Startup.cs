@@ -119,6 +119,7 @@ namespace TicTacToeWeb
             services.AddScoped<IGameResultValidator, GameResultValidator>();
             services.AddScoped<IHistoryService, HistoryService>();
             services.AddScoped<IAdminService, AdminService>();
+            services.AddSingleton<SendGridEmailService>();
         }
     }
 }

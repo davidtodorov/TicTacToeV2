@@ -1,0 +1,16 @@
+﻿@page
+@model TicTacToeWeb.Pages.FeedbackModel
+@{
+    ViewData["Title"] = "Feedback";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Feedback</h2>
+<form method="post">
+    <label asp-for="Subject"></label>
+    <input asp-for="Subject" />
+    <br />
+    <label asp-for="Content"></label>
+    <input asp-for="Content" />
+    <input type="submit"/>
+</form>

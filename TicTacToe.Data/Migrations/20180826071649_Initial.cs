@@ -195,7 +195,8 @@ namespace TicTacToe.Data.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     Status = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: false),
-                    GameId = table.Column<Guid>(nullable: false)
+                    GameId = table.Column<Guid>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
