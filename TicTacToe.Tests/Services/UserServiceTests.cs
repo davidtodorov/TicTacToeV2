@@ -31,7 +31,7 @@ namespace TicTacToe.Tests.Services
         public void GetUser_WithRightId_ReturnUser()
         {
             /// assert
-            var guidId = new Guid().ToString();
+            var guidId = Guid.NewGuid().ToString();
             var user = new User() { Id = guidId, FirstName = "Name", LastName = "name2", Email = "abv@abv.bg", UserName = "abv@abv.bg"};
             context.Users.Add(user);
             context.SaveChanges();

@@ -1,5 +1,3 @@
-using System;
-
 namespace TicTacToeWeb.Models
 {
     public class ErrorViewModel
