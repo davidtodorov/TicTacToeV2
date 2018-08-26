@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TicTacToe.Common.ViewModels;
 using TicTacToe.Models;
@@ -27,7 +28,7 @@ namespace TicTacToe.Services.Interfaces
         /// <param name="game"></param>
         /// <param name="userId"></param>
         /// <param name="status"></param>
-        void CreateScore(Game game, string userId, ScoreStatus status);
+        void CreateScore(Guid gameId, string userId, ScoreStatus status);
 
         /// <summary>
         /// Reset the scores of the user by the given id.

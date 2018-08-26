@@ -44,16 +44,17 @@ namespace TicTacToe.Services
             return scores;
         }
 
-        public void CreateScore(Game game, string userId, ScoreStatus status)
+        public void CreateScore(Guid gameId, string userId, ScoreStatus status)
         {
             var score = new Score()
             {
-                GameId = game.GameId,
+                GameId = gameId,
                 UserId = userId,
                 Status = status
             };
 
             context.Scores.Add(score);
+            context.SaveChanges();
         }
 
         public async Task ResetScores(string userId)

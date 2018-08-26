@@ -19,7 +19,10 @@ namespace TicTacToe.Services
     {
         private readonly TicTacToeDbContext context;
         private readonly IGameResultValidator gameValidator;
+        private readonly IScoreService scoreService;
+        private readonly IHistoryService historyService;
         private readonly Random randomGenerator;
+
 
         public GameService(TicTacToeDbContext context, IGameResultValidator gameValidator)
         {
@@ -221,7 +224,6 @@ namespace TicTacToe.Services
             }
         }
 
-        // TODO: THIS COULD BE SCORE SERVICE but it will be accessable from other place
         private void CreateScoreAndHistory(Game game, string userId, ScoreStatus status)
         {
             var score = new Score()
