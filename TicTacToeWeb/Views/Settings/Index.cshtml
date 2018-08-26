@@ -1,13 +1,22 @@
-﻿
+﻿@using TicTacToe.Common.Constants
+
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (this.User.IsInRole(RoleConstants.ADMIN_ROLE))
+    {
+        Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "/Views/Shared/_Layout.cshtml";
+
+    }
 }
 
 <h2>Settings - choose  your background color</h2>
 
-<input type="color" name="favcolor" value="#ff0000" id="chooseColor" />
-<input type="submit" id="chooseColorButton" />
+<input type="color" name="favcolor" value="#ffffff" id="chooseColor" />
+<input type="submit" id="chooseColorButton" class="btn btn-default btn-sm" />
 
 @section Scripts
 {
