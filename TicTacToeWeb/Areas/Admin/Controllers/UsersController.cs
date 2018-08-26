@@ -27,9 +27,6 @@ namespace TicTacToeWeb.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            //todo: if some of history/scores/users lists are empty, do not show them
-            //todo: settings for therme
-            //todo: add tempdata for message if user connect a game
             var adminId = this.User.Identity.GetUserId();
             var model = this.userService.GetAllUsers().Where(u => u.Id != adminId).ToList();
             return View(model);

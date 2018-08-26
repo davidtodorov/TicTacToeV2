@@ -78,22 +78,29 @@ namespace TicTacToeWeb.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    throw new ValidationException(ModelState.Values.FirstOrDefault(x => x.Errors.Count > 0)?.Errors.FirstOrDefault()?.ErrorMessage);
+                    throw new ValidationException(ModelState.Values.FirstOrDefault(x => x.Errors.Count > 0)?.Errors
+                        .FirstOrDefault()?.ErrorMessage);
                 }
 
                 this.gameService.Join(input, this.User.Identity.GetUserId());
 
-                return this.Json(new { Success = true });
+                return this.Json(new {Success = true});
+            }
+            catch (ValidationException e)
+            {
+                return this.Json(new {Success = false, Exception = e.Message});
+            }
+            catch (TicTacToe.Services.Exceptions.ValidationException e)
+            {
+                return this.Json(new {Success = false, Exception = e.Message});
+            }
+            catch (InvalidCastException e)
+            {
+                return this.Json(new {Success = false, Exception = e.Message});
             }
             catch (Exception e)
             {
-                // TODO: catches
-                var exceptionMessage = e is ValidationException || e is NotFoundException ? e.Message : "An error occured";
-                if (e is ValidationException || e is NotFoundException)
-                {
-                    exceptionMessage = e.Message;
-                }
-                return this.Json(new { Success = false, Exception = exceptionMessage });
+                return this.Json(new { Success = false, Exception = "An Error occured" });
             }
         }
 
@@ -130,11 +137,21 @@ namespace TicTacToeWeb.Controllers
                 this.gameService.Play(input.GameId, userId, input.Row, input.Col);
                 return this.Json(new { Success = true });
             }
+            catch (ValidationException e)
+            {
+                return this.Json(new { Success = false, Exception = e.Message });
+            }
+            catch (TicTacToe.Services.Exceptions.ValidationException e)
+            {
+                return this.Json(new { Success = false, Exception = e.Message });
+            }
+            catch (InvalidCastException e)
+            {
+                return this.Json(new { Success = false, Exception = e.Message });
+            }
             catch (Exception e)
             {
-                var exceptionMessage = e is ValidationException || e is NotFoundException ? e.Message : "An error occured";
-
-                return this.Json(new { Success = false, Exception = exceptionMessage });
+                return this.Json(new { Success = false, Exception = "An Error occured" });
             }
         }
 
@@ -147,11 +164,21 @@ namespace TicTacToeWeb.Controllers
 
                 return this.Json(new { Success = true, status });
             }
+            catch (ValidationException e)
+            {
+                return this.Json(new { Success = false, Exception = e.Message });
+            }
+            catch (TicTacToe.Services.Exceptions.ValidationException e)
+            {
+                return this.Json(new { Success = false, Exception = e.Message });
+            }
+            catch (InvalidCastException e)
+            {
+                return this.Json(new { Success = false, Exception = e.Message });
+            }
             catch (Exception e)
             {
-                var exceptionMessage = e is ValidationException || e is NotFoundException ? e.Message : "An error occured";
-
-                return this.Json(new { Success = false, Exception = exceptionMessage });
+                return this.Json(new { Success = false, Exception = "An Error occured" });
             }
         }
 

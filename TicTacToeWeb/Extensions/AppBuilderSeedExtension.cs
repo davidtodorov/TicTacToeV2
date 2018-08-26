@@ -34,7 +34,7 @@ namespace TicTacToeWeb.Extensions
                     }
                 }
                 
-                //todo: 
+                //todo
                 var admin = await userManager.FindByNameAsync("Admin");
                 var users = userManager.Users;
                 if (admin == null)

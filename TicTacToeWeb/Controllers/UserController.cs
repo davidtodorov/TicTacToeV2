@@ -25,5 +25,10 @@ namespace TicTacToeWeb.Controllers
             var model = userService.GetAllUsers();
             return View(model);
         }
+
+        public IActionResult Details(string userId)
+        {
+            return null;
+        }
     }
 }
